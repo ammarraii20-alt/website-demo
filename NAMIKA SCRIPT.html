@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NAMIKA | Nurturing AI for Maternal Insight and Knowledge Application</title>
+  <style>
+    :root {
+      --primary: #a67b5b;
+      --secondary: #d9c2a3;
+      --background: #f4efe9;
+      --accent: #6b4f3b;
+      --white: #fff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background-color: var(--background);
+      color: var(--accent);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 1rem 2rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    header h1 {
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+    }
+
+    nav {
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--secondary);
+    }
+
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    section {
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      color: var(--accent);
+      border-bottom: 2px solid var(--secondary);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    label {
+      font-weight: 600;
+    }
+
+    input, select {
+      padding: 10px;
+      border: 1px solid var(--secondary);
+      border-radius: 6px;
+      width: 100%;
+      font-size: 1rem;
+      background-color: #fff;
+    }
+
+    button {
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: var(--accent);
+      transform: scale(1.03);
+    }
+
+    #result, #history {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background-color: var(--secondary);
+      border-radius: 8px;
+      color: var(--accent);
+      font-weight: 500;
+      display: none;
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    #history {
+      margin-top: 3rem;
+      background-color: #e9dcc1;
+    }
+
+    .history-item {
+      background: var(--white);
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      background-color: var(--accent);
+      color: var(--white);
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+
+    /* Responsiveness */
+    @media (max-width: 768px) {
+      main {
+        padding: 1rem;
+      }
+
+      header h1 {
+        font-size: 1.2rem;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 5px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>NAMIKA</h1>
+    <p><i>Nurturing Artificial-intelligence for Maternal Insight and Knowledge Application</i></p>
+    <nav>
+      <a href="#tentang">Tentang</a>
+      <a href="#cek">Cek Kesehatan</a>
+      <a href="#riwayat">Riwayat</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="tentang">
+      <h2>Tentang NAMIKA</h2>
+      <p>
+        <b>NAMIKA</b> adalah platform berbasis kecerdasan buatan yang dirancang untuk membantu ibu hamil memantau
+        kesehatan dan kondisi kehamilan secara mandiri. Dengan teknologi <i>AI-driven insight</i>, NAMIKA memberikan
+        analisis dan rekomendasi untuk menjaga kesehatan ibu dan janin.
+      </p>
+    </section>
+
+    <section id="cek">
+      <h2>Formulir Pengecekan Kehamilan</h2>
+      <form id="pregnancyForm">
+        <div>
+          <label for="age">Usia Ibu (tahun):</label>
+          <input type="number" id="age" name="age" required min="15" max="50">
+        </div>
+
+        <div>
+          <label for="weeks">Usia Kehamilan (minggu):</label>
+          <input type="number" id="weeks" name="weeks" required min="1" max="42">
+        </div>
+
+        <div>
+          <label for="bloodPressure">Tekanan Darah (mmHg):</label>
+          <input type="text" id="bloodPressure" name="bloodPressure" placeholder="contoh: 120/80" required>
+        </div>
+
+        <div>
+          <label for="symptom">Gejala yang Dirasakan:</label>
+          <select id="symptom" name="symptom" required>
+            <option value="">-- Pilih Gejala --</option>
+            <option value="normal">Tidak ada keluhan</option>
+            <option value="pusing">Pusing</option>
+            <option value="bengkak">Bengkak di kaki/tangan</option>
+            <option value="mual">Mual berlebihan</option>
+            <option value="nyeri">Nyeri perut hebat</option>
+          </select>
+        </div>
+
+        <button type="submit">Cek Sekarang</button>
+      </form>
+
+      <div id="result"></div>
+    </section>
+
+    <section id="riwayat">
+      <h2>Riwayat Pemeriksaan Anda</h2>
+      <div id="history"></div>
+    </section>
+
+    <section id="kontak">
+      <h2>Kontak Kami</h2>
+      <p>Apabila Anda memiliki pertanyaan atau ingin mendapatkan informasi lebih lanjut, hubungi kami di:</p>
+      <p><b>Email:</b> support@namika.ai</p>
+      <p><b>Telepon:</b> +62 812-3456-7890</p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 NAMIKA | Dibuat dengan 💛 oleh Tim NAMIKA
+  </footer>
+
+  <script>
+    // Fade-in animation on scroll
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    }, { threshold: 0.2 });
+    sections.forEach(section => observer.observe(section));
+
+    // Form logic + local storage
+    const form = document.getElementById("pregnancyForm");
+    const resultDiv = document.getElementById("result");
+    const historyDiv = document.getElementById("history");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const age = parseInt(document.getElementById("age").value);
+      const weeks = parseInt(document.getElementById("weeks").value);
+      const bloodPressure = document.getElementById("bloodPressure").value;
+      const symptom = document.getElementById("symptom").value;
+
+      let message = "";
+      let status = "Aman";
+
+      if (weeks > 40) {
+        message += "⚠ Usia kehamilan sudah melewati batas normal. Segera konsultasikan ke dokter.<br>";
+        status = "Perlu Diperiksa";
+      }
+
+      if (symptom !== "normal") {
+        message += ⚠ Anda melaporkan gejala: <b>${symptom}</b>.<br>;
+        status = "Perlu Diperiksa";
+      }
+
+      const [systolic, diastolic] = bloodPressure.split("/").map(Number);
+      if (systolic > 140 || diastolic > 90) {
+        message += "⚠ Tekanan darah Anda tinggi, waspadai risiko preeklampsia.<br>";
+        status = "Perlu Diperiksa";
+      } else if (systolic < 90 || diastolic < 60) {
+        message += "⚠ Tekanan darah rendah, pastikan asupan cairan dan nutrisi cukup.<br>";
+        status = "Perlu Diperiksa";
+      }
+
+      if (message === "") {
+        message = "✅ Kondisi Anda terlihat baik. Tetap jaga pola makan dan istirahat cukup.";
+      }
+
+      const resultHTML = `
+        <h3>Hasil Analisis NAMIKA</h3>
+        <p><b>Status:</b> ${status}</p>
+        <p>${message}</p>
+      `;
+      resultDiv.innerHTML = resultHTML;
+      resultDiv.style.display = "block";
+
+      // Simpan ke local storage
+      const history = JSON.parse(localStorage.getItem("namikaHistory")) || [];
+      const data = {
+        tanggal: new Date().toLocaleString(),
+        usia: age,
+        minggu: weeks,
+        tekanan: bloodPressure,
+        gejala: symptom,
+        status,
+        pesan: message
+      };
+      history.push(data);
+      localStorage.setItem("namikaHistory", JSON.stringify(history));
+
+      tampilkanRiwayat();
+    });
+
+    function tampilkanRiwayat() {
+      const history = JSON.parse(localStorage.getItem("namikaHistory")) || [];
+      if (history.length === 0) {
+        historyDiv.style.display = "none";
+        return;
+      }
+
+      historyDiv.style.display = "block";
+      historyDiv.innerHTML = history.map(item => `
+        <div class="history-item">
+          <p><b>Tanggal:</b> ${item.tanggal}</p>
+          <p><b>Usia Ibu:</b> ${item.usia} tahun</p>
+          <p><b>Usia Kehamilan:</b> ${item.minggu} minggu</p>
+          <p><b>Tekanan Darah:</b> ${item.tekanan}</p>
+          <p><b>Gejala:</b> ${item.gejala}</p>
+          <p><b>Status:</b> ${item.status}</p>
+          <p>${item.pesan}</p>
+        </div>
+      `).reverse().join("");
+    }
+
+    // Tampilkan riwayat saat halaman dibuka
+    tampilkanRiwayat();
+  </script>
+</body>
+</html>
